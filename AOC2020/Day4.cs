@@ -34,18 +34,8 @@ namespace AOC2020
                 passport = string.Empty;
                 totalPassports++;
 
-                var isValid = true;
 
-                foreach (var item in requiredKeys)
-                {
-                    if(!keys.Contains(item))
-                    {
-                        isValid = false;
-                        break;
-                    }
-                }
-
-                validPassports = isValid ? validPassports + 1 : validPassports;
+                validPassports = requiredKeys.All(x => keys.Contains(x)) ? validPassports + 1 : validPassports;
             }
 
             Console.WriteLine($"Total passports {totalPassports}");
