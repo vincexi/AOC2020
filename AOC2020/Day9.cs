@@ -42,33 +42,38 @@ namespace AOC2020
         public static long Day9B()
         {
             string[] lines = File.ReadAllLines("Inputs/Day9A.txt");
+            var sum = 400480901;
+            var start = 0;
             var list = new List<long>();
-            var preamble = 25;
-            for (int i = 0; i < lines.Length; i++)
+
+            while (true)
             {
-                if (list.Count > preamble)
-                    return list[preamble];
-
-                if (list.Count < preamble)
+                long total = 0;
+                int i = start;
+                while (i < lines.Length)
                 {
-                    list.Add(long.Parse(lines[i]));
-                    continue;
-                }
-                var item = long.Parse(lines[i]);
+                    total += long.Parse(lines[i]);
 
-                for (int j = 0; j < list.Count; j++)
-                {
-                    var comp = item - list[j];
-
-                    if (list.Contains(comp) && comp != list[j])
+                    if(total == sum)
                     {
-                        list.RemoveAt(0);
-                    }
-                }
-                list.Add(item);
-            }
+                        for (int j = start; j < i; j++)
+                        {
+                            list.Add(long.Parse(lines[j]));
+                        }
 
-            return 0;
+                        list.Sort();
+                        return list[0] + list[list.Count - 1];
+                    }
+                    else if (total > sum)
+                    {
+                        start++;
+                        break;
+                    }
+
+                    i++;
+                }
+                start++;
+            }
         }
     }
 }
