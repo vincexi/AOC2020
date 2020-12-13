@@ -36,8 +36,11 @@ namespace AOC2020
             //Console.WriteLine($"Day 10A - {Day10.Day10A()}");
             //Console.WriteLine($"Day 10B - {Day10.Day10B()}");
 
-            Console.WriteLine($"Day 11A - {Day11.Day11A()}");
+            //Console.WriteLine($"Day 11A - {Day11.Day11A()}");
             //Console.WriteLine($"Day 11B - {Day11.Day11B()}");
+
+            Console.WriteLine($"Day 12A - {Day12.Day12A()}");
+            //Console.WriteLine($"Day 12B - {Day12.Day12B()}");
         }
     }
 }
