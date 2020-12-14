@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -39,6 +40,47 @@ namespace AOC2020
             }
 
             return  busId * lowestDiff;
+        }
+
+        public static ulong Day13B()
+        {
+            string[] lines = File.ReadAllLines("Inputs/Day13A.txt");
+            var inputs = lines[1].Split(",");
+            var buses = new List<Bus>();
+            
+            for (uint i = 0; i < inputs.Length; i++)
+            {
+                if (inputs[i] != "x")
+                {
+                    Bus pair = new Bus
+                    {
+                        Id = uint.Parse(inputs[i]),
+                        Position = i
+                    };
+                    buses.Add(pair);
+                }
+            }
+
+            ulong step = buses[0].Id;
+            ulong timestamp = buses[0].Id;
+
+            foreach (Bus pair in buses.Skip(1))
+            {
+                while ((timestamp + pair.Position) % pair.Id != 0)
+                {
+                    timestamp += step;
+                }
+
+                step *= pair.Id;
+            }
+
+            return timestamp;
+        }
+
+        private struct Bus
+        {
+            public uint Id;
+            public uint Position;
         }
     }
 }
